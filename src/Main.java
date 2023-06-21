@@ -28,8 +28,9 @@ public class Main {
         System.out.println("Список призывников: " + recruit);
 
         List<Person> efficient = persons.stream()
-                .filter(p -> p.getEducation() == Education.HIGHER)
-                .filter(p -> p.getAge() >= 18 && p.getAge() < 60)
+                .filter(person -> person.getEducation() == Education.HIGHER &&
+                        ((person.getSex() == Sex.MAN && person.getAge() >= 18 && person.getAge() <= 65) ||
+                                (person.getSex() == Sex.WOMAN && person.getAge() >= 18 && person.getAge() <= 60)))
                 .sorted(Comparator.comparing(Person::getFamily))
                 .collect(Collectors.toList());
 
